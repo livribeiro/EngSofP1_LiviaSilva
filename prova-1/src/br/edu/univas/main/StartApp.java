@@ -2,6 +2,9 @@ package br.edu.univas.main;
 
 import java.util.Scanner;
 
+import br.edu.univas.factory.AnimalsFactory;
+import br.edu.univas.factory.FactoryProvider;
+import br.edu.univas.vo.Animaleat;
 import br.edu.univas.vo.Ant;
 import br.edu.univas.vo.Bee;
 import br.edu.univas.vo.Elephant;
@@ -17,23 +20,12 @@ public class StartApp {
 		System.out.println("2 - Invertebrados");
 		System.out.println("Digite sua opção:");
 		
-		int option = scanner.nextInt();
+		String animalName = scanner.next();
 		
-		if (option == 1) {
-			Elephant elephant = new Elephant();
-			elephant.eat();
-			
-			Shark shark = new Shark();
-			shark.eat();
-
-		} else if (option == 2) {
-			Bee bee = new Bee();
-			bee.eat();
-			
-			Ant ant = new Ant();
-			ant.eat();
-		}
+		AnimalsFactory animalFactory = FactoryProvider.getFactory(animalName);
 		
-		scanner.close();
+		Animaleat animalEat = animalFactory.createAnimal();
+		animalEat.eat();
+	
 	}
 }
